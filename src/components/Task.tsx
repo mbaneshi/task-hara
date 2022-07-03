@@ -5,7 +5,7 @@ export default function Task() {
     <React.Fragment>
       <h1>Task</h1>
       <p>This Task recieve from hara company</p>
-      <img src="http://localhost:8080/images/task.png" alt="Task" />
+      <img src="./task.png" alt="Task" />
     </React.Fragment>
   );
 }
