@@ -15,6 +15,14 @@ export default function MyApp() {
           <Route path="/" element={<App />} />
           <Route path="default" element={<Default />} />
           <Route path="task" element={<Task />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
         </Routes>
       </React.Fragment>
     </BrowserRouter>
