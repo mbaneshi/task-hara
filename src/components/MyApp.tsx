@@ -1,30 +1,35 @@
-import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
-import Default from "./Default";
+import Salam from "./Salam";
 import Navbar from "./Navbar";
-
+import Pictures from "./Pictures";
+import styles from "./MyApp.module.css";
+import MyPicture from "./MyPicture";
 import Task from "./Task";
+import Footer from "./Footer";
 
 export default function MyApp() {
   return (
-    <BrowserRouter>
-      <React.Fragment>
+    <div className={styles.root}>
+      <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="default" element={<Default />} />
+          <Route path="/" element={<Salam />} />
+          <Route path="default" element={<App />} />
           <Route path="task" element={<Task />} />
+          <Route path="picture" element={<Pictures />} />
+          <Route path="mypictures" element={<MyPicture />} />
           <Route
             path="*"
             element={
               <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
+                <p className={styles.para}>There's nothing here!</p>
               </main>
             }
           />
         </Routes>
-      </React.Fragment>
-    </BrowserRouter>
+      </BrowserRouter>
+      <Footer />
+    </div>
   );
 }

@@ -1,0 +1,13 @@
+.root {
+  background-color: rgb(209, 182, 235);
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding-bottom: 10rem;
+}
+
+.para {
+  font-size: 200px;
+}
