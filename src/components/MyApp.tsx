@@ -2,11 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "../App";
 import Salam from "./Salam";
 import Navbar from "./Navbar";
-import Pictures from "./Pictures";
 import styles from "./MyApp.module.css";
-import MyPicture from "./MyPicture";
 import Task from "./Task";
 import Footer from "./Footer";
+import NotFound from "./NotFound";
+import Pictures from "./Pictures";
+import IsLoading from "./IsLoading";
+import ImageGrid from "./ImageGrid";
 
 export default function MyApp() {
   return (
@@ -15,18 +17,12 @@ export default function MyApp() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Salam />} />
-          <Route path="default" element={<App />} />
+          <Route path="app" element={<App />} />
           <Route path="task" element={<Task />} />
-          <Route path="picture" element={<Pictures />} />
-          <Route path="mypictures" element={<MyPicture />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p className={styles.para}>There's nothing here!</p>
-              </main>
-            }
-          />
+          <Route path="picture/*" element={<Pictures />} />
+          <Route path="isloading" element={<IsLoading />} />
+          <Route path="imagegrid" element={<ImageGrid />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
       <Footer />

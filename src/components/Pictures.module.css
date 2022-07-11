@@ -1,17 +1,5 @@
-.image {
-  width: 200px;
-  padding: 25px;
-  margin: auto;
-}
-.section {
-  background-color: rgb(69, 218, 15);
+.pag {
   display: flex;
-
-  padding: 50px;
-}
-.container {
-  background-color: sandybrown;
-}
-.link {
-  text-decoration: "none";
+  align-items: center;
+  justify-content: center;
 }

@@ -32,7 +32,17 @@ export const picturesrSlice = createSlice({
   name: "picture",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
-  reducers: {},
+  reducers: {
+    getPic: (state, action) => {
+      state.items.push(action.payload);
+    },
+    setErr: (state, action) => {
+      state.err = action.payload;
+    },
+    setIsloading: (state, action) => {
+      state.islodings = action.payload;
+    },
+  },
   //     increment: (state) => {
   //       // Redux Toolkit allows us to write "mutating" logic in reducers. It
   //       // doesn't actually mutate the state because it uses the Immer library,
@@ -66,12 +76,12 @@ export const picturesrSlice = createSlice({
   },
 });
 
-export const {} = picturesrSlice.actions;
+export const { getPic, setErr, setIsloading } = picturesrSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectCount = (state: RootState) => state.picture.items;
+export const selectPicture = (state: RootState) => state.picture.items;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

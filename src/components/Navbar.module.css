@@ -20,4 +20,12 @@
   list-style-type: none;
   align-items: center;
   background-color: #efdda8;
+  height: 3rem;
+}
+.link {
+  list-style-type: none;
+  text-decoration: none;
+}
+.link:hover {
+  background-color: yellow;
 }

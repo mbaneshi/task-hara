@@ -1,5 +1,5 @@
 .footer {
-  background-color: rgb(193, 182, 36);
+  background-color: rgb(234, 244, 183);
   font-size: 45px;
   position: absolute;
   width: 100%;
@@ -9,4 +9,6 @@
 
   bottom: 0;
   margin: 0;
+  height: 100px;
+  background: #eee;
 }
