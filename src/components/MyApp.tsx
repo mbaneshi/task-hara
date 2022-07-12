@@ -9,22 +9,28 @@ import NotFound from "./NotFound";
 import Pictures from "./Pictures";
 import IsLoading from "./IsLoading";
 import ImageGrid from "./ImageGrid";
+import { QueryClient, QueryClientProvider } from "react-query";
 
+const queryClient = new QueryClient();
 export default function MyApp() {
   return (
     <div className={styles.root}>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Salam />} />
-          <Route path="app" element={<App />} />
-          <Route path="task" element={<Task />} />
-          <Route path="picture/*" element={<Pictures />} />
-          <Route path="isloading" element={<IsLoading />} />
-          <Route path="imagegrid" element={<ImageGrid />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <div className={styles.container}>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Salam />} />
+              <Route path="app" element={<App />} />
+              <Route path="task" element={<Task />} />
+              <Route path="picture/*" element={<Pictures />} />
+              <Route path="isloading" element={<IsLoading />} />
+              <Route path="imagegrid" element={<ImageGrid />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </div>
       <Footer />
     </div>
   );

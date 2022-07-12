@@ -1,23 +1,29 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Pictures from "../types/Pictures";
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
-const MyPicture: any = () => {
-  const [pic, setPic] = useState<Pictures[]>([]);
-  console.log(" I am within MyPicture components");
-  const params = useParams();
-  useEffect(() => {
-    fetch("https://61ee6204d593d20017dbadb4.mockapi.io/items")
-      .then((response) => response.json())
-      .then((json) => setPic(json));
-  }, []);
-  const [picshow] = pic;
-
+export default function MediaCard(props: any) {
   return (
-    <div key={picshow?.id}>
-      <h2>{picshow?.title}</h2>
-      <img src={picshow?.image} alt={picshow?.title} />
-    </div>
+    <Card sx={{ maxWidth: 450 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={props.image}
+        alt={props.title}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h6" component="div">
+          {props.title}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">add</Button>
+        <Button size="small">remove</Button>
+      </CardActions>
+    </Card>
   );
-};
-export default MyPicture;
+}

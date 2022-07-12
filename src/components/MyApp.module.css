@@ -1,17 +1,14 @@
 .root {
   background-color: rgb(202, 240, 197);
-  position: relative;
-  min-height: 100%;
-  display: block;
-  flex-wrap: wrap;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  margin-bottom: -100px;
   background: #ddd;
 }
-.root::after {
-  content: "";
-  display: block;
-  height: 100px;
+.container {
+  flex-grow: 1;
+  min-height: 100vh;
 }

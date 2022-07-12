@@ -8,12 +8,12 @@ import { Pagination } from "@mui/material";
 import style from "./Pictures.module.css";
 import IsLoading from "./IsLoading";
 import ImageGrid from "./ImageGrid";
+import MediaCard from "./MyPicture";
 
 const Pictures: any = (): React.ReactNode => {
   const [pic, setPic] = useState<myPictures | undefined>();
   const dispatch = useAppDispatch();
   const { items, err, islodings } = useAppSelector((state) => state.picture);
-  console.log("items", items);
 
   useEffect(() => {
     try {
@@ -34,6 +34,7 @@ const Pictures: any = (): React.ReactNode => {
   if (islodings) {
     return (
       <>
+        <IsLoading />
         <ImageGrid />
       </>
     );
@@ -48,41 +49,21 @@ const Pictures: any = (): React.ReactNode => {
         {pic?.map((item: myPictures): any => {
           return (
             <Grid item key={item.id} justifyContent="center">
-              <h1
-                style={{
-                  textAlign: "center",
-                  margin: "0 auto",
-                  marginBottom: "0",
-                }}
-              >
-                {item.title}
-              </h1>
               <Link to={`picture/${item.id}`}>
-                <img src={item.image} alt={item.title} loading="lazy" />
+                <MediaCard image={item.image} title={item.title} />
               </Link>
             </Grid>
           );
         })}
-        <div className={style.pag}></div>
-      </Grid>
-      <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid
-          item
-          sx={{
-            height: 100,
-          }}
-        >
-          <Pagination
-            count={5}
-            color="secondary"
-            size="large"
-            variant="outlined"
-          />
+        <Grid item>
+          <div className={style.pag}>
+            <Pagination
+              count={5}
+              color="secondary"
+              size="large"
+              variant="outlined"
+            />
+          </div>
         </Grid>
       </Grid>
     </>
