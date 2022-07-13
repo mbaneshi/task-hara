@@ -10,6 +10,7 @@ import Pictures from "./Pictures";
 import IsLoading from "./IsLoading";
 import ImageGrid from "./ImageGrid";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Test from "./Test";
 
 const queryClient = new QueryClient();
 export default function MyApp() {
@@ -24,6 +25,7 @@ export default function MyApp() {
               <Route path="app" element={<App />} />
               <Route path="task" element={<Task />} />
               <Route path="picture/*" element={<Pictures />} />
+              <Route path="picture/:id" element={<Test />} />
               <Route path="isloading" element={<IsLoading />} />
               <Route path="imagegrid" element={<ImageGrid />} />
               <Route path="*" element={<NotFound />} />

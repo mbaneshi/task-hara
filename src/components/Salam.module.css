@@ -1,13 +1,3 @@
-.header {
-  background-color: rgba(228, 203, 37, 0.787);
-  font-size: 12rem;
-  margin: 0;
-  padding: 0;
-  color: rgb(237, 45, 15);
-}
-a {
-  background-color: aqua;
-}
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

@@ -1,37 +1,24 @@
-import React, { useState, useEffect, memo } from "react";
 import { Link } from "react-router-dom";
 import myPictures from "../types/Pictures";
 import Grid from "@mui/material/Grid";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { getPic, setErr, setIsloading } from "../features/picture/pictureSlice";
 import { Pagination } from "@mui/material";
-import style from "./Pictures.module.css";
 import IsLoading from "./IsLoading";
 import ImageGrid from "./ImageGrid";
 import MediaCard from "./MyPicture";
+import { useQuery } from "react-query";
+import style from "./Pictures.module.css";
 
 const Pictures: any = (): React.ReactNode => {
-  const [pic, setPic] = useState<myPictures | undefined>();
-  const dispatch = useAppDispatch();
-  const { items, err, islodings } = useAppSelector((state) => state.picture);
+  const fetchPicture = async () => {
+    const res = await fetch(
+      "https://61ee6204d593d20017dbadb4.mockapi.io/items"
+    );
+    return res.json();
+  };
 
-  useEffect(() => {
-    try {
-      dispatch(setIsloading(true));
-      fetch("https://61ee6204d593d20017dbadb4.mockapi.io/items")
-        .then((response) => response.json())
-        .then((json) => {
-          setPic(json);
+  const { data, isError, isLoading } = useQuery("pictures", fetchPicture);
 
-          dispatch(getPic(json));
-          dispatch(setIsloading(false));
-        });
-    } catch (e) {
-      dispatch(setErr(e as any));
-    }
-  }, []);
-
-  if (islodings) {
+  if (isLoading) {
     return (
       <>
         <IsLoading />
@@ -39,19 +26,17 @@ const Pictures: any = (): React.ReactNode => {
       </>
     );
   }
-  if (err) {
+  if (isError) {
     return <h1> ooooopsss some error occured</h1>;
   }
 
   return (
     <>
-      <Grid container direction="row" spacing={4} justifyContent="space-evenly">
-        {pic?.map((item: myPictures): any => {
+      <Grid container direction="row" spacing={1} justifyContent="space-evenly">
+        {data?.map((item: myPictures): any => {
           return (
             <Grid item key={item.id} justifyContent="center">
-              <Link to={`picture/${item.id}`}>
-                <MediaCard image={item.image} title={item.title} />
-              </Link>
+              <MediaCard image={item.image} title={item.title} id={item.id} />
             </Grid>
           );
         })}
@@ -70,4 +55,4 @@ const Pictures: any = (): React.ReactNode => {
   );
 };
 
-export default memo(Pictures);
+export default Pictures;
