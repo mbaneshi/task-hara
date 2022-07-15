@@ -1,22 +1,14 @@
-import { Link } from "react-router-dom";
 import myPictures from "../types/Pictures";
 import Grid from "@mui/material/Grid";
 import { Pagination } from "@mui/material";
 import IsLoading from "./IsLoading";
 import ImageGrid from "./ImageGrid";
 import MediaCard from "./MyPicture";
-import { useQuery } from "react-query";
 import style from "./Pictures.module.css";
+import useReadiness from "../hooks/useReadiness";
 
 const Pictures: any = (): React.ReactNode => {
-  const fetchPicture = async () => {
-    const res = await fetch(
-      "https://61ee6204d593d20017dbadb4.mockapi.io/items"
-    );
-    return res.json();
-  };
-
-  const { data, isError, isLoading } = useQuery("pictures", fetchPicture);
+  const { data, isError, isLoading } = useReadiness();
 
   if (isLoading) {
     return (
@@ -27,6 +19,7 @@ const Pictures: any = (): React.ReactNode => {
     );
   }
   if (isError) {
+    console.log("🚀 ~ file: Pictures.tsx ~ line 27 ~ isError", isError);
     return <h1> ooooopsss some error occured</h1>;
   }
 
@@ -36,7 +29,12 @@ const Pictures: any = (): React.ReactNode => {
         {data?.map((item: myPictures): any => {
           return (
             <Grid item key={item.id} justifyContent="center">
-              <MediaCard image={item.image} title={item.title} id={item.id} />
+              <MediaCard
+                image={item.image}
+                title={item.title}
+                id={item.id}
+                height={"200px"}
+              />
             </Grid>
           );
         })}

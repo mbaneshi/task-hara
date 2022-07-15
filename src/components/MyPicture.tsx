@@ -9,11 +9,11 @@ import { Link } from "react-router-dom";
 
 export default function MediaCard(props: any) {
   return (
-    <Card sx={{ maxWidth: 450 }}>
+    <Card>
       <Link to={`${props.id}`}>
         <CardMedia
           component="img"
-          height="140"
+          height={props.height}
           image={props.image}
           alt={props.title}
         />

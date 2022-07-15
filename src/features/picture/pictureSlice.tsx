@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
 import { fetchPictures } from "./pictureAPI";
+import myPictures from "../../types/Pictures";
 
 export interface PicturesState {
-  items: string[];
+  data: myPictures[];
   err: string | null;
   islodings: boolean;
 }
 
 const initialState: PicturesState = {
-  items: [],
+  data: [],
   err: null,
   islodings: false,
 };
@@ -33,8 +34,8 @@ export const picturesrSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    getPic: (state, action) => {
-      state.items.push(action.payload);
+    setData: (state, action) => {
+      state.data = action.payload;
     },
     setErr: (state, action) => {
       state.err = action.payload;
@@ -67,7 +68,7 @@ export const picturesrSlice = createSlice({
       })
       .addCase(fetchPicAsync.fulfilled, (state, action) => {
         state.islodings = false;
-        state.items = action.payload;
+        state.data = action.payload;
       })
       .addCase(fetchPicAsync.rejected, (state, action) => {
         state.islodings = false;
@@ -76,12 +77,12 @@ export const picturesrSlice = createSlice({
   },
 });
 
-export const { getPic, setErr, setIsloading } = picturesrSlice.actions;
+export const { setData, setErr, setIsloading } = picturesrSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectPicture = (state: RootState) => state.picture.items;
+export const selectPicture = (state: RootState) => state.picture.data;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
