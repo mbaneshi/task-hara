@@ -8,6 +8,7 @@ import useReadiness from "../hooks/useReadiness";
 
 export default function DataFetcher(props: any) {
   const { data, isLoading, isError } = useReadiness();
+  
   const dispatch = useAppDispatch();
 
   dispatch(setData(data));
