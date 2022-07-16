@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 import { fetchPictures } from "./pictureAPI";
 import myPictures from "../../types/Pictures";
 
@@ -37,10 +37,10 @@ export const picturesrSlice = createSlice({
     setData: (state, action) => {
       state.data = action.payload;
     },
-    setErr: (state, action) => {
+    setError: (state, action) => {
       state.err = action.payload;
     },
-    setIsloading: (state, action) => {
+    setIsLoading: (state, action) => {
       state.islodings = action.payload;
     },
   },
@@ -77,7 +77,7 @@ export const picturesrSlice = createSlice({
   },
 });
 
-export const { setData, setErr, setIsloading } = picturesrSlice.actions;
+export const { setData, setError, setIsLoading } = picturesrSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

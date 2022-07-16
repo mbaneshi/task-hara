@@ -3,12 +3,12 @@ import Grid from "@mui/material/Grid";
 import { Pagination } from "@mui/material";
 import IsLoading from "./IsLoading";
 import ImageGrid from "./ImageGrid";
-import MediaCard from "./MyPicture";
+import MediaCard from "./MediaCard";
 import style from "./Pictures.module.css";
-import useReadiness from "../hooks/useReadiness";
+import useStoreData from "../hooks/useStoreData";
 
 const Pictures: any = (): React.ReactNode => {
-  const { data, isError, isLoading } = useReadiness();
+  const { isLoading, data, isError } = useStoreData();
 
   if (isLoading) {
     return (
@@ -19,7 +19,6 @@ const Pictures: any = (): React.ReactNode => {
     );
   }
   if (isError) {
-    console.log("🚀 ~ file: Pictures.tsx ~ line 27 ~ isError", isError);
     return <h1> ooooopsss some error occured</h1>;
   }
 

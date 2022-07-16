@@ -1,10 +1,8 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
 import pictureReducer from "../features/picture/pictureSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     picture: pictureReducer,
   },
 });

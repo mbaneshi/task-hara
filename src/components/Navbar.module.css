@@ -4,7 +4,6 @@
   left: 0;
   z-index: 1;
   width: 100%;
-  background-color: #e3c8f0;
   height: 5rem;
 }
 .ul {
@@ -13,19 +12,19 @@
   flex-direction: row;
   list-style: none;
   justify-content: space-evenly;
-  background: rgb(235, 166, 166);
   margin: 0;
   justify-items: center;
   padding: 0;
   list-style-type: none;
   align-items: center;
-  background-color: #efdda8;
   height: 3rem;
 }
 .link {
   list-style-type: none;
   text-decoration: none;
+  padding: "2rem";
 }
 .link:hover {
-  background-color: yellow;
+  background-color: rgb(26, 196, 209);
+  padding: "2rem";
 }

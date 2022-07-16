@@ -14,7 +14,7 @@ export default function ComponentWraper(props: any) {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
-        backgroundImage: `url(${bg2})`,
+        backgroundImage: `url(${bg})`,
         backgroundPposition: "center",
         backgroundRrepeat: "no-repeat",
         backgroundSize: "cover",
@@ -24,3 +24,7 @@ export default function ComponentWraper(props: any) {
     </Box>
   );
 }
+//TODO
+/*
+make robust grid layout with break point 
+*/

@@ -1,30 +1,42 @@
 import { useParams } from "react-router-dom";
-import useReadiness from "../hooks/useReadiness";
-import MediaCard from "./MyPicture";
+import useStoreData from "../hooks/useStoreData";
+import IsLoading from "./IsLoading";
+import MediaCard from "./MediaCard";
 
 export default function ImageDetail() {
-  let { data } = useReadiness();
+  const { isLoading, data, isError } = useStoreData();
+  const { id } = useParams();
 
-  console.log("🚀 ~ file: ImageDetail.tsx ~ line 9 ~ ImageDetail ~ data", data);
-  let { id } = useParams();
-  console.log("🚀 ~ file: ImageDetail.tsx ~ line 10 ~ ImageDetail ~ id", id);
-  let myid = Number(id);
+  if (isError) {
+    console.log("inside isError condition");
+    return <h1>Opsss Error</h1>;
+  }
 
-  const selecteddata = data[myid - 1];
-  console.log(
-    "🚀 ~ file: ImageDetail.tsx ~ line 11 ~ ImageDetail ~ selecteddata",
-    selecteddata
-  );
+  if (isLoading) {
+    console.log("inside data condition");
 
-  let content = (
+    return <IsLoading />;
+  }
+  let myid = Number(id) - 1;
+
+  const selecteddata = data[myid];
+
+  const { image, title } = selecteddata;
+
+  return (
     <MediaCard
-      sx={{ minWidth: "1000px" }}
-      id={selecteddata.id}
-      image={selecteddata.image}
-      title={selecteddata.title}
+      sx={{ minWidth: "100%" }}
+      id={id}
+      image={image}
+      title={title}
       height={"450px"}
     />
   );
-
-  return content;
 }
+
+//TODO
+/*
+ ! this ia alert
+? querry
+
+*/
