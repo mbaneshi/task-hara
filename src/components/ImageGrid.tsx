@@ -1,9 +1,9 @@
 import React from "react";
 import ContentLoader from "react-content-loader";
-import ComponentWraper from "../Layout/ComponentWraper";
+import ComponentWrapper from "../Layout/ComponentWrapper";
 
 const ImageGrid = () => (
-  <ComponentWraper>
+  <ComponentWrapper>
     <ContentLoader
       width={800}
       height={575}
@@ -27,6 +27,6 @@ const ImageGrid = () => (
       <circle cx="210" cy="535" r="12" />
       <circle cx="428" cy="536" r="12" />
     </ContentLoader>
-  </ComponentWraper>
+  </ComponentWrapper>
 );
 export default ImageGrid;

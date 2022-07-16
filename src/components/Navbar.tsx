@@ -15,7 +15,7 @@ export default function Navbar() {
         </Button>
 
         <li>
-          <Link to="/aboutus" className={style.link}>
+          <Link to="/about" className={style.link}>
             About us
           </Link>
         </li>

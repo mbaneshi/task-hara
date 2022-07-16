@@ -1,10 +1,10 @@
-import ComponentWraper from "../Layout/ComponentWraper";
+import ComponentWrapper from "../Layout/ComponentWrapper";
 
 export default function AboutUs() {
   return (
-    <ComponentWraper>
+    <ComponentWrapper>
       <h1>Task</h1>
-      <p>This Task recieve from hara company</p>
+      <p>This Task receive from hara company</p>
       <img
         src="./task.png"
         alt="Task"
@@ -14,6 +14,6 @@ export default function AboutUs() {
           objectFit: "cover",
         }}
       />
-    </ComponentWraper>
+    </ComponentWrapper>
   );
 }
