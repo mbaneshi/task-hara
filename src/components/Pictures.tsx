@@ -27,7 +27,12 @@ const Pictures: any = (): React.ReactNode => {
       <Grid container direction="row" spacing={1} justifyContent="space-evenly">
         {data?.map((item: myPictures): any => {
           return (
-            <Grid item key={item.id} justifyContent="center">
+            <Grid
+              item
+              key={item.id}
+              justifyContent="center"
+              sx={{ marginBottom: "2rem" }}
+            >
               <MediaCard
                 image={item.image}
                 title={item.title}

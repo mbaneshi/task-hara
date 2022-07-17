@@ -19,6 +19,11 @@ export default function Navbar() {
             About us
           </Link>
         </li>
+        <li>
+          <Link to="/favorite" className={style.link}>
+            Favorite
+          </Link>
+        </li>
       </ul>
     </nav>
   );

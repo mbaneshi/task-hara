@@ -7,15 +7,40 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Input } from "@mui/material";
+import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import {
+  addToFavorite,
+  deleteFromStore,
+} from "../features/picture/pictureSlice";
 
 export default function MediaCard(props: any) {
+  //! Hooks
+  const dispatch = useAppDispatch();
+  const [showInput, setShowInput] = useState(false);
+  const data = useAppSelector((state) => state.picture.data);
+
+  //! Handlers
   const handleDelete = (e: any) => {
-    console.log(e);
-    console.log(props.id);
+    dispatch(deleteFromStore(data[Number(props.id - 1)]));
   };
   const handleEdit = (e: any) => {
     console.log(e);
+    setShowInput(true);
   };
+  const handleInput = (e: any) => {
+    console.log(e.target.value);
+  };
+  const handleBlur = (e: any) => {
+    console.log(e.target.value);
+    setShowInput(false);
+  };
+  const handleFavorite = (e: any) => {
+    dispatch(addToFavorite(data[Number(props.id)]));
+  };
+  //! JSX
   return (
     <Card>
       <Link to={`${props.id}`}>
@@ -27,17 +52,29 @@ export default function MediaCard(props: any) {
           alt={props.title}
         />
       </Link>
-      <CardContent>
-        <Typography gutterBottom variant="h6" component="div">
+      <CardContent sx={{ textAlign: "center", margin: 0, padding: 0 }}>
+        <Typography variant="button" component="div">
           {props.title}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ display: "flex" }}>
+        <Button size="small" onClick={handleFavorite}>
+          <FavoriteIcon />
+        </Button>
         <Button size="small" onClick={handleDelete}>
           <DeleteIcon />
         </Button>
 
         <Button size="small" onClick={handleEdit}>
+          {showInput && (
+            <Input
+              autoFocus={true}
+              color="secondary"
+              name="title"
+              onChange={handleInput}
+              onBlur={handleBlur}
+            />
+          )}
           <EditIcon />
         </Button>
       </CardActions>
@@ -46,5 +83,5 @@ export default function MediaCard(props: any) {
 }
 //TODO
 /*
-Omit Linke in detail view to prevent link 
+Omit Link in detail view to prevent link 
 */

@@ -7,19 +7,22 @@ export interface PicturesState {
   data: myPictures[];
   err: string | null;
   isloading: boolean;
+  favoritePic: myPictures[];
 }
 
 const initialState: PicturesState = {
   data: [],
   err: null,
   isloading: false,
+  favoritePic: [],
 };
 
 export const fetchPicAsync = createAsyncThunk(
   "picture/fetchPictures",
   async (url: string) => {
     const response = await fetchPictures(url);
-    return response.data;
+
+    return response;
   }
 );
 
@@ -35,6 +38,20 @@ export const picturesSlice = createSlice({
     },
     setIsLoading: (state, action) => {
       state.isloading = action.payload;
+    },
+    addToFavorite: (state, action) => {
+      state.favoritePic.push(action.payload);
+    },
+    deleteFromStore: (state, action) => {
+      console.log("🚀 ~ file: pictureSlice.tsx ~ line 45 ~ state", state);
+      var deleteIndex = state.data.findIndex(
+        (item) => Number(item.id) === Number(action.payload.id)
+      );
+
+      if (deleteIndex > 0) {
+        state.data.splice(deleteIndex, 1);
+        console.log("state.data.length", state.data.length);
+      }
     },
   },
 
@@ -54,7 +71,13 @@ export const picturesSlice = createSlice({
   },
 });
 
-export const { setData, setError, setIsLoading } = picturesSlice.actions;
+export const {
+  setData,
+  setError,
+  setIsLoading,
+  deleteFromStore,
+  addToFavorite,
+} = picturesSlice.actions;
 
 export const selectPicture = (state: RootState) => state.picture.data;
 
